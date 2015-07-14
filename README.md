@@ -19,7 +19,18 @@ vagrant up
 
 komutları ile gerçekleştirilir.
 
-Kurulum bittikten sonra ``` vagrant ssh ``` diyerek sistemime bağlanılır.
+Ardından ```nano Vagrantfile``` komutunu girip
+
+```bash
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine. In the example below,
+  # accessing "localhost:8080" will access port 80 on the guest machine.
+  config.vm.network "forwarded_port", guest: 8183, host: 8183
+```
+
+Son satırı böyle değiştiriyoruz. 
+
+Tüm bunlar bittikten sonra ``` vagrant ssh ``` diyerek sistemime bağlanılır.
 
 Bağlantı başarılı bir şekilde gerçekleştikten sonra, ilk olarak ```sudo su``` ile root olup, Redis Server kurulumunu gerçekleştirilir,
 
@@ -173,4 +184,10 @@ veya
 ```
     zato create load_balancer [-h] [--store-log] [--verbose] [--store-config]
     path pub_key_path priv_key_path cert_path ca_certs_path
+```
+
+Son olarak da server'ı başlatmak için 
+
+```
+zato start aa/web-admin/
 ```
