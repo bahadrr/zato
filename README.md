@@ -51,10 +51,9 @@ Vagrant'ı, Zato'yu ve Redis Server başarılı bir şekilde oluşturulduğa gö
 ```
 1- ODB kurulumu
 2- Cluster kurulumu
-3- Sertifika(CA) kurulumları
-4- Server kurulumu
-5- Web Admin kurulumu
-6- Load Balancer kurulumu
+3- Server kurulumu
+4- Web Admin kurulumu
+5- Load Balancer kurulumu
 ```
 
 işlemlerini gerçekleştiriyoruz.
@@ -97,21 +96,6 @@ zato create cluster sqlite localhost 11223 20151 localhost 6379 PROD3 techacc1 -
 
 komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebilir.
 
-3 - CA KURULUMu ``` zato ca create ca ~/zato/dev3/ca ```
-
-Öncelikle az önce oluşturduğumuz klasörün içine ```ca``` adında bir klasör oluşturulur.
-
-``` 
-mkdir aa/ca
-```
-
-Ardından,
-
-```
-zato ca create ca ~/aa/ca
-```
-
-komutu çalıştırılır.
 
 4 - SERVER KURULUMU
 
@@ -120,9 +104,11 @@ komutu çalıştırılır.
 CA kurulumları gerçekleştirilir,
 
 ```
-zato ca create lb_agent ~/aa/ca/ zato_lb_agent1
-zato ca create server ~/aa/ca/ PROD3 server
-zato ca create web_admin ~/aa/ca/
+mkdir aa/ca1
+zato ca create ca ~/aa/ca1
+zato ca create lb_agent ~/aa/ca1/ zato_lb_agent1
+zato ca create server ~/aa/ca1/ PROD3 server
+zato ca create web_admin ~/aa/ca1/
 ```
 
 İsterseniz kendiniz aşağıdaki komutlar yardımı ile,
@@ -139,7 +125,7 @@ zato create server [-h] [--store-log] [--verbose] [--store-config]
 isterseniz de,
 
 ```
-zato create server ~/aa/server sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb localhost 6379 ~/aa/ca/out-pub/PROD3*.pem ~/aa/ca/out-priv/PROD3*.pem ~/aa/ca/out-cert/PROD3*.pem ~/aa/ca/ca-material/ca-cert.pem PROD3 serve
+zato create server ~/aa/server sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server
 ```
 
 komutu ile kurulumu gerçekleştirebilirsiniz.
