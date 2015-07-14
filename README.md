@@ -97,7 +97,7 @@ zato create cluster sqlite localhost 11223 20151 localhost 6379 PROD3 techacc1 -
 
 komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebilir.
 
-3 - CA KURULUMLARI ``` zato ca create ca ~/zato/dev3/ca ```
+3 - CA KURULUMu ``` zato ca create ca ~/zato/dev3/ca ```
 
 Öncelikle az önce oluşturduğumuz klasörün içine ```ca``` adında bir klasör oluşturulur.
 
@@ -105,20 +105,25 @@ komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebili
 mkdir aa/ca
 ```
 
-Ardından, sırası ile 
+Ardından,
 
 ```
 zato ca create ca ~/aa/ca
+```
+
+komutu çalıştırılır.
+
+4 - SERVER KURULUMU
+
+Önce ``` mkdir aa/server ```` ile bir uzantı oluşturulur,
+
+CA kurulumları gerçekleştirilir,
+
+```
 zato ca create lb_agent ~/aa/ca/ zato_lb_agent1
 zato ca create server ~/aa/ca/ PROD3 server
 zato ca create web_admin ~/aa/ca/
 ```
-
-komutları çalıştırılır.
-
-4 - SERVER KURULUMU
-
-Önce ``` mkdir aa/server ```` ile bir uzantı oluşturulur.
 
 İsterseniz kendiniz aşağıdaki komutlar yardımı ile,
 
@@ -144,7 +149,6 @@ komutu ile kurulumu gerçekleştirebilirsiniz.
 Öncelikle sırası ile aşağıdaki komutları çalıştırarak gerekli sertifikalar kurulur 
 
 ```
-zato ca create ca ~/aa/ca
 zato ca create lb_agent ~/aa/ca/ zato_lb_agent1
 zato ca create server ~/aa/ca/ PROD3 server
 zato ca create web_admin ~/aa/ca/
@@ -161,7 +165,6 @@ komutu ile kurulum gerçekleştirilir.
 6 - LOAD BALANCER KURULUMU
 
 ```
-zato ca create ca ~/aa/ca
 zato ca create lb_agent ~/aa/ca/ zato_lb_agent1
 zato ca create server ~/aa/ca/ PROD3 server
 zato ca create web_admin ~/aa/ca/
@@ -169,8 +172,8 @@ zato ca create web_admin ~/aa/ca/
 
 komutları ile sertifikalar kurulur.
 
-``` mkdir aa/load-balancer ``` diye uzantı oluşturulur ve gerekli kurulum yapılır
-
+``` 
+mkdir aa/load-balancer ``` diye uzantı oluşturulur ve gerekli kurulum yapılır
 ```
 zato create load_balancer ~/aa/load-balancer/ ~/aa/ca/out-pub/*57.pem ~/aa/ca/out-priv/*57.pem ~/aa/ca/out-cert/*57.pem ~/aa/ca/ca-material/ca-cert.pem
 ```
