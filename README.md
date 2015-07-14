@@ -135,15 +135,17 @@ komutu ile kurulumu gerçekleştirebilirsiniz.
 Öncelikle sırası ile aşağıdaki komutları çalıştırarak gerekli sertifikalar kurulur 
 
 ```
-zato ca create lb_agent ~/aa/ca/ zato_lb_agent1
-zato ca create server ~/aa/ca/ PROD3 server
-zato ca create web_admin ~/aa/ca/
+mkdir aa/ca2
+zato ca create ca ~/aa/ca2
+zato ca create lb_agent ~/aa/ca2/ zato_lb_agent1
+zato ca create server ~/aa/ca2/ PROD3 server
+zato ca create web_admin ~/aa/ca2/
 ```
 
 ardından, ``` mkdir aa/web-admin ``` ile bir uzantı oluşturulur ve
 
 ```
-zato create web_admin ~/aa/web-admin sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb ~/aa/ca/out-pub/*50.pem ~/aa/ca/out-priv/*50.pem ~/aa/ca/out-cert/*50.pem ~/aa/ca/ca-material/ca-cert.pem techacc1
+zato create web_admin ~/aa/web-admin sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc1
 ```
 
 komutu ile kurulum gerçekleştirilir.
@@ -151,9 +153,11 @@ komutu ile kurulum gerçekleştirilir.
 6 - LOAD BALANCER KURULUMU
 
 ```
-zato ca create lb_agent ~/aa/ca/ zato_lb_agent1
-zato ca create server ~/aa/ca/ PROD3 server
-zato ca create web_admin ~/aa/ca/
+mkdir aa/ca3
+zato ca create ca ~/aa/ca3
+zato ca create lb_agent ~/aa/ca3/ zato_lb_agent1
+zato ca create server ~/aa/ca3/ PROD3 server
+zato ca create web_admin ~/aa/ca3/
 ```
 
 komutları ile sertifikalar kurulur.
@@ -161,7 +165,7 @@ komutları ile sertifikalar kurulur.
 ``` 
 mkdir aa/load-balancer ``` diye uzantı oluşturulur ve gerekli kurulum yapılır
 ```
-zato create load_balancer ~/aa/load-balancer/ ~/aa/ca/out-pub/*57.pem ~/aa/ca/out-priv/*57.pem ~/aa/ca/out-cert/*57.pem ~/aa/ca/ca-material/ca-cert.pem
+zato create load_balancer ~/aa/load-balancer/ ~/aa/ca3/out-pub/lb*.pem ~/aa/ca3/out-priv/lb*.pem ~/aa/ca3/out-cert/lb*.pem ~/aa/ca3/ca-material/ca-cert.pem
 ```
 
 veya 
