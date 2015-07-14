@@ -136,7 +136,7 @@ zato create server [-h] [--store-log] [--verbose] [--store-config]
 isterseniz de,
 
 ```
-zato create server ~/aa/server sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server
+zato create server ~/aa/server sqlite localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb
 ```
 
 komutu ile kurulumu gerçekleştirebilirsiniz.
@@ -156,7 +156,7 @@ zato ca create web_admin ~/aa/ca2/
 ardından, ``` mkdir aa/web-admin ``` ile bir uzantı oluşturulur ve
 
 ```
-zato create web_admin ~/aa/web-admin sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc1
+zato create web_admin ~/aa/web-admin sqlite ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc1 --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb
 ```
 
 komutu ile kurulum gerçekleştirilir.
