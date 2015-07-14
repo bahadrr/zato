@@ -82,7 +82,7 @@ Kurulum için aşağıdaki kullanımdan yararlanarak
 veya
 
 ```
-zato create odb postgresql --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --verbose
+zato create odb sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --verbose
 ```
 
 komutu ile sqlite türünde odb kurulumunu gerçekleştirilir.
@@ -102,7 +102,7 @@ Kurulum için aşağıdaki kullanımdan yararlanarak
 veya direk 
 
 ```
-zato create cluster postgresql localhost 11223 20151 localhost 6379 PROD3 techacc1 --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --verbose
+zato create cluster sqlite localhost 11223 20151 localhost 6379 PROD3 techacc1 --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --verbose
 ``` 
 
 komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebilir.
@@ -136,7 +136,7 @@ zato create server [-h] [--store-log] [--verbose] [--store-config]
 isterseniz de,
 
 ```
-zato create server ~/aa/server postgresql --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server
+zato create server ~/aa/server sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server
 ```
 
 komutu ile kurulumu gerçekleştirebilirsiniz.
@@ -156,7 +156,7 @@ zato ca create web_admin ~/aa/ca2/
 ardından, ``` mkdir aa/web-admin ``` ile bir uzantı oluşturulur ve
 
 ```
-zato create web_admin ~/aa/web-admin postgresql --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc1
+zato create web_admin ~/aa/web-admin sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc1
 ```
 
 komutu ile kurulum gerçekleştirilir.
