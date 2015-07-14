@@ -162,8 +162,8 @@ zato ca create web_admin ~/aa/ca3/
 
 komutları ile sertifikalar kurulur.
 
-``` 
-mkdir aa/load-balancer ``` diye uzantı oluşturulur ve gerekli kurulum yapılır
+``` mkdir aa/load-balancer `` diye uzantı oluşturulur ve gerekli kurulum yapılır
+
 ```
 zato create load_balancer ~/aa/load-balancer/ ~/aa/ca3/out-pub/lb*.pem ~/aa/ca3/out-priv/lb*.pem ~/aa/ca3/out-cert/lb*.pem ~/aa/ca3/ca-material/ca-cert.pem
 ```
