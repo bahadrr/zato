@@ -99,7 +99,7 @@ komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebili
 
 4 - SERVER KURULUMU
 
-Önce ``` mkdir aa/server ```` ile bir uzantı oluşturulur,
+Önce ``` mkdir aa/server ``` ile bir uzantı oluşturulur,
 
 CA kurulumları gerçekleştirilir,
 
@@ -162,7 +162,7 @@ zato ca create web_admin ~/aa/ca3/
 
 komutları ile sertifikalar kurulur.
 
-``` mkdir aa/load-balancer `` diye uzantı oluşturulur ve gerekli kurulum yapılır
+``` mkdir aa/load-balancer ``` diye uzantı oluşturulur ve gerekli kurulum yapılır
 
 ```
 zato create load_balancer ~/aa/load-balancer/ ~/aa/ca3/out-pub/lb*.pem ~/aa/ca3/out-priv/lb*.pem ~/aa/ca3/out-cert/lb*.pem ~/aa/ca3/ca-material/ca-cert.pem
