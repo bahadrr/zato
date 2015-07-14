@@ -97,7 +97,7 @@ zato create cluster sqlite localhost 11223 20151 localhost 6379 PROD3 techacc1 -
 komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebilir.
 
 
-4 - SERVER KURULUMU
+3 - SERVER KURULUMU
 
 Önce ``` mkdir aa/server ``` ile bir uzantı oluşturulur,
 
@@ -130,7 +130,7 @@ zato create server ~/aa/server sqlite --odb_host localhost --odb_port 5432 --odb
 
 komutu ile kurulumu gerçekleştirebilirsiniz.
 
-5 - WEB ADMIN KURULUMU
+4 - WEB ADMIN KURULUMU
 
 Öncelikle sırası ile aşağıdaki komutları çalıştırarak gerekli sertifikalar kurulur 
 
@@ -150,7 +150,7 @@ zato create web_admin ~/aa/web-admin sqlite --odb_host localhost --odb_port 5432
 
 komutu ile kurulum gerçekleştirilir.
 
-6 - LOAD BALANCER KURULUMU
+5 - LOAD BALANCER KURULUMU
 
 ```
 mkdir aa/ca3
