@@ -222,3 +222,10 @@ veya
     zato create load_balancer [-h] [--store-log] [--verbose] [--store-config]
     path pub_key_path priv_key_path cert_path ca_certs_path
 ```
+
+
+redis-cli 
+CONFIG SET requirepass "1"
+AUTH 1
+
+
