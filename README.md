@@ -32,13 +32,7 @@ Son satırı böyle değiştiriyoruz.
 
 Tüm bunlar bittikten sonra ``` vagrant ssh ``` diyerek sistemime bağlanılır.
 
-Bağlantı başarılı bir şekilde gerçekleştikten sonra, ilk olarak ```sudo su``` ile root olup, Redis Server kurulumunu gerçekleştirilir,
-
-```
-apt-get install redis-server
-```
-
-Ardından, zatonun kurulumunu 
+Bağlantı başarılı bir şekilde gerçekleştikten sonra, ilk olarak ```sudo su``` ile root olup, Zato'nun kurulumunu gerçekleştirilir,
 
 ```
 apt-get install apt-transport-https
@@ -48,9 +42,49 @@ apt-get update
 apt-get install zato
 ```
 
+Ardından, Redis-Server kurulumunu 
+
+```
+apt-get install redis-server
+```
+
 komutları ile yapılır.
 
-Ardından ``` exit ``` diyerek root kullanıcısından çıkıp, bundan sonraki işlemlerde zato kullanıcısına geçilir ve yeni bir klasör oluşturulur.
+Şimdi Postgresql kurulumu için öncelikle http://www.postgresql.org/download/ sitesine girip, linux sisteminize göre seçim yapın.
+
+Ubuntu/trusty14.04 için 
+
+PostgreSQL Apt Repository altından sürüm seçimi yapın, ```/etc/apt/sources.list.d/pgdg.list``` aşağıdaki repoyu buraya ekleyin
+deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+
+Ardından gpg keyi terminale giriniz,
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo apt-get update
+
+Postgresql kurulumu için
+
+```apt-get install postgresql-9.4```
+
+komutunu giriniz.
+
+Kurulum sonunda 
+
+```
+su postgres
+```
+
+komutu ile postgres kullanıcısına geçiniz.
+
+Ardından sırası ile
+
+```
+create user zato createdb createuser password 'zatopassword';
+create database zatodb;
+```
+diyerek zato için gerekli postgresql kurulumunu tamamlayınız.
+
+
+Ardından iki kere ard arda``` exit ``` diyerek postgres ve root kullanıcısından çıkıp, bundan sonraki işlemlerde zato kullanıcısına geçilir ve yeni bir klasör oluşturulur.
 
 ```
 sudo su - zato
@@ -82,7 +116,7 @@ Kurulum için aşağıdaki kullanımdan yararlanarak
 veya
 
 ```
-zato create odb sqlite --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --verbose
+zato create odb postgresql --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --postgresql_schema zato --odb_password 'zatopassword'
 ```
 
 komutu ile sqlite türünde odb kurulumunu gerçekleştirilir.
@@ -102,7 +136,7 @@ Kurulum için aşağıdaki kullanımdan yararlanarak
 veya direk 
 
 ```
-zato create cluster sqlite localhost 11223 20151 localhost 6379 PROD3 techacc1 --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --verbose
+zato create cluster postgresql localhost 11223 20151 localhost 6379 PROD3 techacc --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --postgresql_schema zato --odb_password 'zatopassword'
 ``` 
 
 komutu ile PROD3 adında cluster eklenir. Şifre için herhangi birşey girebilir.
@@ -136,7 +170,7 @@ zato create server [-h] [--store-log] [--verbose] [--store-config]
 isterseniz de,
 
 ```
-zato create server ~/aa/server sqlite localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb
+zato create server ~/aa/server postgresql localhost 6379 ~/aa/ca1/out-pub/PROD3*.pem ~/aa/ca1/out-priv/PROD3*.pem ~/aa/ca1/out-cert/PROD3*.pem ~/aa/ca1/ca-material/ca-cert.pem PROD3 server --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --postgresql_schema zato --odb_password 'zatopassword'
 ```
 
 komutu ile kurulumu gerçekleştirebilirsiniz.
@@ -156,7 +190,7 @@ zato ca create web_admin ~/aa/ca2/
 ardından, ``` mkdir aa/web-admin ``` ile bir uzantı oluşturulur ve
 
 ```
-zato create web_admin ~/aa/web-admin sqlite ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc1 --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb
+zato create web_admin ~/aa/web-admin postgresql ~/aa/ca2/out-pub/web-admin*.pem ~/aa/ca2/out-priv/web-admin*.pem ~/aa/ca2/out-cert/web-admin*.pem ~/aa/ca2/ca-material/ca-cert.pem techacc --odb_host localhost --odb_port 5432 --odb_user zato --odb_db_name zatodb --postgresql_schema zato --odb_password 'zatopassword'
 ```
 
 komutu ile kurulum gerçekleştirilir.
