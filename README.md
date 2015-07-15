@@ -42,7 +42,7 @@ apt-get update
 apt-get install zato
 ```
 
-Ardından, Redis-Server kurulumunu 
+Ardından, Redis-Server kurulumu
 
 ```
 apt-get install redis-server
