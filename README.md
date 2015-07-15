@@ -54,12 +54,15 @@ komutları ile yapılır.
 
 Ubuntu/trusty14.04 için 
 
-PostgreSQL Apt Repository altından sürüm seçimi yapın, ```/etc/apt/sources.list.d/pgdg.list``` aşağıdaki repoyu buraya ekleyin
-deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+PostgreSQL Apt Repository altından sürüm seçimi yapın, deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main burdaki repoyu ```/etc/apt/sources.list.d/pgdg.list``` ' ya ekleyin.
+
 
 Ardından gpg keyi terminale giriniz,
+
+```
 wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo apt-get update
+```
 
 Postgresql kurulumu için
 
@@ -218,10 +221,4 @@ veya
 ```
     zato create load_balancer [-h] [--store-log] [--verbose] [--store-config]
     path pub_key_path priv_key_path cert_path ca_certs_path
-```
-
-Son olarak da server'ı başlatmak için 
-
-```
-zato start aa/web-admin/
 ```
