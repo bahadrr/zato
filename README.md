@@ -304,3 +304,19 @@ zato start ~/aa/server
 zato start ~/aa/load-balancer
 zato start ~/aa/web-admin
 ```
+
+Şimdi, 
+
+```
+zato update password [-h] [--store-log] [--verbose] [--store-config]
+                            [--password PASSWORD]
+                            path username
+```
+
+komutu ile veya direkt olarak
+
+```
+zato update password ~/aa/web-admin/ admin
+```
+
+komutu ile admin kullanıcısına şifre atayabilirsiniz.
