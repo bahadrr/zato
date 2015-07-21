@@ -94,12 +94,13 @@ su postgres
 
 komutu ile postgres kullanıcısına geçiniz.
 
-Ardından sırası ```psql``` komutunu giriniz ve
+Ardından
 
 ```
-create user zato createdb createuser password 'zatopassword';
-create database zatodb;
+psql -c "create user zato createdb createuser password 'zatopassword';"
+psql -c "create database zatodb"
 ```
+
 komutları ile zato için gerekli postgresql kullanıcısı ve database kurulumunu tamamlayınız.
 
 
