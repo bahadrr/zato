@@ -68,6 +68,10 @@ Ubuntu/trusty14.04 için
 
 PostgreSQL Apt Repository altından sürüm seçimi yapın, ```deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main``` burdaki repoyu ```/etc/apt/sources.list.d/pgdg.list``` ' ya ekleyin.
 
+veya direkt olarak 
+
+``` echo deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main >> /etc/apt/sources.list.d/pgdg.list ```
+
 
 Ardından gpg keyi terminale giriniz,
 
