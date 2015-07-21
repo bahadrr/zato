@@ -222,10 +222,8 @@ zato create server \
    ~/aa/ca/ca-material/ca-cert.pem \
    PROD3 \
    server \
-   --odb_host \
-   localhost \
-   --odb_port \
-   5432 \
+   --odb_host localhost \
+   --odb_port 5432 \
    --odb_user zato \
    --odb_db_name zatodb \
    --postgresql_schema zato \
