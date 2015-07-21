@@ -104,7 +104,7 @@ psql -c "create database zatodb"
 komutları ile zato için gerekli postgresql kullanıcısı ve database kurulumunu tamamlayınız.
 
 
-Ardından önce ```\q``` sonra iki kere ard arda``` exit ``` diyerek postgres ve root kullanıcısından çıkıp, bundan sonraki işlemlerde zato kullanıcısına geçilir ve yeni bir klasör oluşturulur.
+Ardından iki kere ard arda``` exit ``` diyerek postgres ve root kullanıcısından çıkıp, bundan sonraki işlemlerde zato kullanıcısına geçilir ve yeni bir klasör oluşturulur.
 
 ```
 sudo su - zato
