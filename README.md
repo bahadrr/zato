@@ -97,8 +97,8 @@ komutu ile postgres kullanıcısına geçiniz.
 Ardından
 
 ```
-psql -c "create user zato createdb createuser password 'zatopassword';"
-psql -c "create database zatodb"
+psql -c "CREATE USER zato WITH PASSWORD 'zatopassword';"
+psql -c "CREATE DATABASE zatodb"
 psql -c "GRANT ALL PRIVILEGES ON DATABASE zatodb to zato;"
 ```
 
