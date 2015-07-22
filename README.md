@@ -99,6 +99,7 @@ Ardından
 ```
 psql -c "create user zato createdb createuser password 'zatopassword';"
 psql -c "create database zatodb"
+psql -c "GRANT ALL PRIVILEGES ON DATABASE zatodb to zato;"
 ```
 
 komutları ile zato için gerekli postgresql kullanıcısı ve database kurulumunu tamamlayınız.
