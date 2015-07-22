@@ -51,13 +51,13 @@ apt-get install apt-transport-https
 curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | sudo apt-key add -
 apt-add-repository https://zato.io/repo/stable/2.0/ubuntu
 apt-get update
-apt-get install zato
+apt-get -y install zato
 ```
 
 Ardından, Redis-Server kurulumu
 
 ```
-apt-get install redis-server
+apt-get -y install redis-server
 ```
 
 komutları ile yapılır.
