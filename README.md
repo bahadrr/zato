@@ -51,13 +51,13 @@ apt-get install apt-transport-https
 curl -s https://zato.io/repo/zato-0CBD7F72.pgp.asc | sudo apt-key add -
 apt-add-repository https://zato.io/repo/stable/2.0/ubuntu
 apt-get update
-apt-get -y install zato
+apt-get install zato
 ```
 
 Ardından, Redis-Server kurulumu
 
 ```
-apt-get -y install redis-server
+apt-get install redis-server
 ```
 
 komutları ile yapılır.
@@ -67,10 +67,6 @@ komutları ile yapılır.
 Ubuntu/trusty14.04 için
 
 PostgreSQL Apt Repository altından sürüm seçimi yapın, ```deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main``` burdaki repoyu ```/etc/apt/sources.list.d/pgdg.list``` ' ya ekleyin.
-
-veya direkt olarak 
-
-``` echo deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main >> /etc/apt/sources.list.d/pgdg.list ```
 
 
 Ardından gpg keyi terminale giriniz,
@@ -94,18 +90,16 @@ su postgres
 
 komutu ile postgres kullanıcısına geçiniz.
 
-Ardından
+Ardından ```psql``` komutunu ve
 
 ```
-psql -c "CREATE USER zato WITH PASSWORD 'zatopassword';"
-psql -c "CREATE DATABASE zatodb"
-psql -c "GRANT ALL PRIVILEGES ON DATABASE zatodb to zato;"
+create user zato createdb createuser password 'zatopassword';
+create database zatodb;
 ```
-
 komutları ile zato için gerekli postgresql kullanıcısı ve database kurulumunu tamamlayınız.
 
 
-Ardından iki kere ard arda``` exit ``` diyerek postgres ve root kullanıcısından çıkıp, bundan sonraki işlemlerde zato kullanıcısına geçilir ve yeni bir klasör oluşturulur.
+Ardından önce ```\q``` sonra iki kere ard arda``` exit ``` diyerek postgres ve root kullanıcısından çıkıp, bundan sonraki işlemlerde zato kullanıcısına geçilir ve yeni bir klasör oluşturulur.
 
 ```
 sudo su - zato
@@ -223,8 +217,10 @@ zato create server \
    ~/aa/ca/ca-material/ca-cert.pem \
    PROD3 \
    server \
-   --odb_host localhost \
-   --odb_port 5432 \
+   --odb_host \
+   localhost \
+   --odb_port \
+   5432 \
    --odb_user zato \
    --odb_db_name zatodb \
    --postgresql_schema zato \
@@ -309,18 +305,12 @@ zato start ~/aa/load-balancer
 zato start ~/aa/web-admin
 ```
 
-Şimdi, 
+Şimdi herhangi bir tarayıcı açarak http://localhost:8183 adresine bağlanınız.
 
-```
-zato update password [-h] [--store-log] [--verbose] [--store-config]
-                            [--password PASSWORD]
-                            path username
-```
+kullanıcı adı:admin
+şifre: 1
 
-komutu ile veya direkt olarak
+olarak giriş yapınız.
 
-```
-zato update password ~/aa/web-admin/ admin
-```
-
-komutu ile admin kullanıcısına şifre atayabilirsiniz.
+Gelen sayfada ilk sekme olan Cluster->Server-> add-to-lb ye basiniz.
+Ardından Clusters -> (pick one from the table) -> Load-balancer -> Config GUI view 'den  server port'u 17010 olarak  değiştiriniz.
